@@ -2,10 +2,17 @@
     <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
+    <div class="col-md-9" [ngSwitch]="isAuthenticated()">
+        <h1 class="display-4">Welcome to <span *ngIf="account"
+        > You are logged in as user "{{account.login}}". </span> Blog!</h1>
+        <p class="lead">Posts</p>
 
+        <div *ngFor="let post of posts">
+            <h2>{{post.title}}</h2>
+            <p [innerHTML]="post.body"></p>
+            <small>Written by: {{post.author}}</small>
+        </div>
+<!--
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account"
@@ -36,6 +43,6 @@
 
         <p>
             <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
+        </p>-->
     </div>
 </div>
